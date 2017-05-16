@@ -1,0 +1,12 @@
+module load intel intel-mpi
+#export GXX_ROOT=/usr/lib/gcc/x86_64-redhat-linux/4.4.4/
+#setenv GXX_ROOT/usr/lib/gcc/x86_64-redhat-linux/4.4.4/
+
+#module load intel
+#module load openmpi
+#module swap pgid gcc
+#module swap openmpi openmpi
+#ifort -o symm variable.f90 inv.f90 lapack.f90 utils.f90 energy.f90 utype.f90 symm.f90 -L/opt/intel/ictce/3.1/intel64/mkl/10.0.011/lib/em64t -mkl
+mpiifort -o symm variable.f90 inv.f90 lapack.f90 utils.f90 energy.f90 utype.f90 symm.f90 -L/opt/intel/ictce/3.1/intel64/mkl/10.0.011/lib/em64t -mkl -lmpi
+#mpif90 -o symm variable.f90 inv.f90 lapack.f90 utils.f90 energy.f90 utype.f90 symm.f90 -L/opt/intel/ictce/3.1/intel64/mkl/10.0.011/lib/em64t -openmpi -mkl -lmpi
+#ifort -openmp -o symm variable.f90 inv.f90 lapack.f90 utils.f90 energy.f90 utype.f90 symm.f90 -L/opt/intel/ictce/3.1/intel64/mkl/10.0.011/lib/em64t -mkl -lmpi
