@@ -72,7 +72,7 @@ open(unit=OUNIT, file = trim(FILENAME)//'.corr', status = 'replace', &
 
 read(IUNIT1,*) n,nup,ndn,L,slater,conv
 
-print*,'Number of proc',numproc
+!print*,'Number of proc',numproc
 write(OUNIT,*)'Number of proc',numproc
 
 LWORK = 3*L-1
@@ -319,7 +319,7 @@ end if
 !        print*,'entered loop',size(greendn),size(green2dn)
  !       print*,nup,detup
         call greens(tbasdn(:,:,bit1),tbasdn(:,:,bit2),greendn,green2dn,N,ndn,detdn)
-!        print*,'Hi! entered loop',size(greendn),size(green2dn)
+!        print*,' entered loop',size(greendn),size(green2dn)
   !      print*,ndn,detdn
         call hamiltonian(greenup,greendn,en,kinetic,potential,N)
         !print*,'After calculating Greens function',en
@@ -352,8 +352,8 @@ end if
     !    print*,i,j,o_part(i,j),h_part(i,j)
      !   end do
      !end do
-        print*,'In processor',rank,'the hamiltonian is'
-        print*,h_part
+!        print*,'In processor',rank,'the hamiltonian is'
+!        print*,h_part
         dim=L*L
  !if(rank/=0)then
   call MPI_REDUCE(h_part,hamilt,dim,MPI_DOUBLE_PRECISION,MPI_SUM,0,MPI_COMM_WORLD,ierr)
@@ -377,7 +377,7 @@ end if
  end if
 
   if (rank==0)then
-        print*,'I am the Master',rank
+!        print*,'I am the Master',rank
          
           !call DSYGV( 1, 'V' , 'U' , L , h_part , L , o_part , L , eigval , WORK, LWORK, INFO )
           call DSYGV( 1, 'V' , 'U' , L , hamilt , L , o , L , eigval , WORK, LWORK, INFO )
